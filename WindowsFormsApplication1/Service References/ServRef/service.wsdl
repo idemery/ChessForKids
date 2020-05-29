@@ -1,0 +1,258 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:tns="http://tempuri.org/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" name="ChessService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="NetTcpBinding_IChessServiceCommuni_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="72010000">
+          </wsrm:InactivityTimeout>
+          <wsrm:AcknowledgementInterval Milliseconds="200">
+          </wsrm:AcknowledgementInterval>
+        </wsrm:RMAssertion>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1">
+        </msb:BinaryEncoding>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
+                  <msf:ProtectionLevel>None</msf:ProtectionLevel>
+                </msf:WindowsTransportSecurity>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256>
+                </sp:Basic256>
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict>
+                </sp:Strict>
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing>
+        </wsaw:UsingAddressing>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/Chess.Service" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IChessServiceCommuni_Connect_InputMessage">
+    <wsdl:part name="parameters" element="tns:Connect" />
+  </wsdl:message>
+  <wsdl:message name="IChessServiceCommuni_Connect_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConnectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChessServiceCommuni_JoinRoom_InputMessage">
+    <wsdl:part name="parameters" element="tns:JoinRoom" />
+  </wsdl:message>
+  <wsdl:message name="IChessServiceCommuni_JoinRoom_OutputMessage">
+    <wsdl:part name="parameters" element="tns:JoinRoomResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChessServiceCommuni_Send_InputMessage">
+    <wsdl:part name="parameters" element="tns:Send" />
+  </wsdl:message>
+  <wsdl:message name="IChessServiceCommuni_Send_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChessServiceCommuni_Move_InputMessage">
+    <wsdl:part name="parameters" element="tns:Move" />
+  </wsdl:message>
+  <wsdl:message name="IChessServiceCommuni_Move_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MoveResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChessServiceCommuni_ClientConnected_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ClientConnected" />
+  </wsdl:message>
+  <wsdl:message name="IChessServiceCommuni_ClientConnected_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ClientConnectedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChessServiceCommuni_ClientDisconnected_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ClientDisconnected" />
+  </wsdl:message>
+  <wsdl:message name="IChessServiceCommuni_ClientDisconnected_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ClientDisconnectedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChessServiceCommuni_Receive_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:Receive" />
+  </wsdl:message>
+  <wsdl:message name="IChessServiceCommuni_Receive_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ReceiveResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChessServiceCommuni_R_StartGame_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:R_StartGame" />
+  </wsdl:message>
+  <wsdl:message name="IChessServiceCommuni_R_StartGame_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:R_StartGameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChessServiceCommuni_R_MoveCallback_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:R_MoveCallback" />
+  </wsdl:message>
+  <wsdl:message name="IChessServiceCommuni_R_MoveCallback_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:R_MoveCallbackResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChessServiceCommuni_R_ReceiveRoomMessage_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:R_ReceiveRoomMessage" />
+  </wsdl:message>
+  <wsdl:message name="IChessServiceCommuni_R_ReceiveRoomMessage_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:R_ReceiveRoomMessageResponse" />
+  </wsdl:message>
+  <wsdl:portType msc:usingSession="true" name="IChessServiceCommuni">
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Connect">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChessServiceCommuni/Connect" message="tns:IChessServiceCommuni_Connect_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChessServiceCommuni/ConnectResponse" message="tns:IChessServiceCommuni_Connect_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="JoinRoom">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChessServiceCommuni/JoinRoom" message="tns:IChessServiceCommuni_JoinRoom_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChessServiceCommuni/JoinRoomResponse" message="tns:IChessServiceCommuni_JoinRoom_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Send">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChessServiceCommuni/Send" message="tns:IChessServiceCommuni_Send_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChessServiceCommuni/SendResponse" message="tns:IChessServiceCommuni_Send_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Move">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChessServiceCommuni/Move" message="tns:IChessServiceCommuni_Move_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChessServiceCommuni/MoveResponse" message="tns:IChessServiceCommuni_Move_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ClientConnected">
+      <wsdl:output wsaw:Action="http://tempuri.org/IChessServiceCommuni/ClientConnected" message="tns:IChessServiceCommuni_ClientConnected_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IChessServiceCommuni/ClientConnectedResponse" message="tns:IChessServiceCommuni_ClientConnected_InputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ClientDisconnected">
+      <wsdl:output wsaw:Action="http://tempuri.org/IChessServiceCommuni/ClientDisconnected" message="tns:IChessServiceCommuni_ClientDisconnected_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IChessServiceCommuni/ClientDisconnectedResponse" message="tns:IChessServiceCommuni_ClientDisconnected_InputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Receive">
+      <wsdl:output wsaw:Action="http://tempuri.org/IChessServiceCommuni/Receive" message="tns:IChessServiceCommuni_Receive_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IChessServiceCommuni/ReceiveResponse" message="tns:IChessServiceCommuni_Receive_InputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="R_StartGame">
+      <wsdl:output wsaw:Action="http://tempuri.org/IChessServiceCommuni/R_StartGame" message="tns:IChessServiceCommuni_R_StartGame_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IChessServiceCommuni/R_StartGameResponse" message="tns:IChessServiceCommuni_R_StartGame_InputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="R_MoveCallback">
+      <wsdl:output wsaw:Action="http://tempuri.org/IChessServiceCommuni/R_MoveCallback" message="tns:IChessServiceCommuni_R_MoveCallback_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IChessServiceCommuni/R_MoveCallbackResponse" message="tns:IChessServiceCommuni_R_MoveCallback_InputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="R_ReceiveRoomMessage">
+      <wsdl:output wsaw:Action="http://tempuri.org/IChessServiceCommuni/R_ReceiveRoomMessage" message="tns:IChessServiceCommuni_R_ReceiveRoomMessage_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IChessServiceCommuni/R_ReceiveRoomMessageResponse" message="tns:IChessServiceCommuni_R_ReceiveRoomMessage_InputCallbackMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NetTcpBinding_IChessServiceCommuni" type="tns:IChessServiceCommuni">
+    <wsp:PolicyReference URI="#NetTcpBinding_IChessServiceCommuni_policy">
+    </wsp:PolicyReference>
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="Connect">
+      <soap12:operation soapAction="http://tempuri.org/IChessServiceCommuni/Connect" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="JoinRoom">
+      <soap12:operation soapAction="http://tempuri.org/IChessServiceCommuni/JoinRoom" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Send">
+      <soap12:operation soapAction="http://tempuri.org/IChessServiceCommuni/Send" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Move">
+      <soap12:operation soapAction="http://tempuri.org/IChessServiceCommuni/Move" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClientConnected">
+      <soap12:operation soapAction="http://tempuri.org/IChessServiceCommuni/ClientConnected" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ClientDisconnected">
+      <soap12:operation soapAction="http://tempuri.org/IChessServiceCommuni/ClientDisconnected" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Receive">
+      <soap12:operation soapAction="http://tempuri.org/IChessServiceCommuni/Receive" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="R_StartGame">
+      <soap12:operation soapAction="http://tempuri.org/IChessServiceCommuni/R_StartGame" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="R_MoveCallback">
+      <soap12:operation soapAction="http://tempuri.org/IChessServiceCommuni/R_MoveCallback" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="R_ReceiveRoomMessage">
+      <soap12:operation soapAction="http://tempuri.org/IChessServiceCommuni/R_ReceiveRoomMessage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ChessService">
+    <wsdl:port name="NetTcpBinding_IChessServiceCommuni" binding="tns:NetTcpBinding_IChessServiceCommuni">
+      <soap12:address location="net.tcp://localhost:9890/chess/tcp" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:9890/chess/tcp</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Upn>DASHSOFT\Islam.ElDemery</Upn>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
