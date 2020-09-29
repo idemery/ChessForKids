@@ -7,7 +7,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-namespace WindowsFormsApplication1
+namespace idemery
 {
     public interface ICell
     {

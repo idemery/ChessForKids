@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
 
-namespace WindowsFormsApplication1
+namespace idemery
 {
     public interface IPiece
     {

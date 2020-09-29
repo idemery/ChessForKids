@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace WCFServiceHost
+namespace idemery
 {
     static class Program
     {
@@ -15,7 +15,8 @@ namespace WCFServiceHost
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new MainForm());
+            //mn 3'er soot
         }
     }
 }

@@ -5,11 +5,11 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-namespace WindowsFormsApplication1
+namespace idemery
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
         }
@@ -101,7 +101,7 @@ namespace WindowsFormsApplication1
                 if (value != null)
                 {
                     this.Font = new Font(mFontCollection.Families[0], 50f);
-                    this.Text = value.Color == Form1.WhiteColor ? value.WhiteName : value.BlackName;
+                    this.Text = value.Color == MainForm.WhiteColor ? value.WhiteName : value.BlackName;
                     IsEmpty = false;
                 }
                 else

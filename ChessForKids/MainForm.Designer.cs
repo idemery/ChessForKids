@@ -1,6 +1,6 @@
-﻿namespace WindowsFormsApplication1
+﻿namespace idemery
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.

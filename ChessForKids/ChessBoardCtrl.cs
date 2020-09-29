@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace WindowsFormsApplication1
+namespace idemery
 {
     public partial class ChessBoardCtrl : UserControl
     {
@@ -23,7 +23,7 @@ namespace WindowsFormsApplication1
 
         Board board = null;
 
-        private void CreateCells(ServRef.PlayerColor color)
+        private void CreateCells(PlayerColor color)
         {
             board = Board.InitBoard(Color.Blue, Color.Black);
 
@@ -53,5 +53,11 @@ namespace WindowsFormsApplication1
         {
             board.ClickCell((sender as Cell).Position.X, (sender as Cell).Position.Y);
         }
+    }
+
+    public enum PlayerColor
+    {
+        White,
+        Black
     }
 }
