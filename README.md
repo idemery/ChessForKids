@@ -1,5 +1,5 @@
 # Chess For Kids
-Helps beginner chess players to know a piece's allowed moves, and threats.
+Helps beginner chess players to know a piece's allowed moves and threats.
 
 ![Chess for Kids!](./ChessForKids.gif)
 
